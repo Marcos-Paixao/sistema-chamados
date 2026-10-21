@@ -1,0 +1,55 @@
+
+import type { Ticket } from '../types/Ticket'
+
+export const initialTickets: Ticket[] = [
+  {
+    id: 1,
+    title: 'Computador não liga',
+    requester: 'João Silva',
+    category: 'Hardware',
+    priority: 'Alta',
+    status: 'Aberto',
+    description: 'O computador não liga após pressionar o botão de energia.',
+    createdAt: '2026-10-20',
+  },
+  {
+    id: 2,
+    title: 'Erro ao acessar o sistema',
+    requester: 'Maria Oliveira',
+    category: 'Software',
+    priority: 'Média',
+    status: 'Em andamento',
+    description: 'O sistema apresenta uma mensagem de erro durante o login.',
+    createdAt: '2026-10-20',
+  },
+  {
+    id: 3,
+    title: 'Impressora sem conexão',
+    requester: 'Pedro Santos',
+    category: 'Impressoras',
+    priority: 'Baixa',
+    status: 'Resolvido',
+    description: 'A impressora não estava sendo reconhecida pelo computador.',
+    createdAt: '2026-10-19',
+  },
+  {
+    id: 4,
+    title: 'Internet instável',
+    requester: 'Ana Costa',
+    category: 'Rede',
+    priority: 'Alta',
+    status: 'Aberto',
+    description: 'A conexão com a internet cai várias vezes durante o expediente.',
+    createdAt: '2026-10-21',
+  },
+  {
+    id: 5,
+    title: 'Solicitação de acesso',
+    requester: 'Carlos Souza',
+    category: 'Acesso',
+    priority: 'Média',
+    status: 'Em andamento',
+    description: 'Solicitação de permissão para acessar uma pasta compartilhada.',
+    createdAt: '2026-10-21',
+  },
+]
