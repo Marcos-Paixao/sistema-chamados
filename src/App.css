@@ -364,6 +364,29 @@ td strong {
   background: #d1fae5;
 }
 
+.badge {
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  outline-offset: 3px;
+  transition:
+    filter 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.badge:hover {
+  filter: brightness(0.96);
+}
+
+.badge:focus-visible {
+  outline: 2px solid #2563eb;
+}
+
+.badge option {
+  color: #222;
+  background: #fff;
+}
+
 .footer {
   padding: 28px 0 8px;
   color: #8a96a8;

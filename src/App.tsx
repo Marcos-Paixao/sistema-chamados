@@ -6,23 +6,23 @@ import TicketForm from "./components/TicketForm/TicketForm";
 
 function App() {
   const [tickets, setTickets] = useState<Ticket[]>(() => {
-  const savedTickets = localStorage.getItem('helpdesk-tickets')
+    const savedTickets = localStorage.getItem("helpdesk-tickets");
 
-  if (savedTickets) {
-    try {
-      return JSON.parse(savedTickets) as Ticket[]
-    } catch {
-      localStorage.removeItem('helpdesk-tickets')
+    if (savedTickets) {
+      try {
+        return JSON.parse(savedTickets) as Ticket[];
+      } catch {
+        localStorage.removeItem("helpdesk-tickets");
+      }
     }
-  }
 
-  return initialTickets
-})
+    return initialTickets;
+  });
   const [isFormOpen, setIsFormOpen] = useState(false);
 
   useEffect(() => {
-  localStorage.setItem('helpdesk-tickets', JSON.stringify(tickets))
-}, [tickets])
+    localStorage.setItem("helpdesk-tickets", JSON.stringify(tickets));
+  }, [tickets]);
 
   function handleCreateTicket(data: {
     title: string;
@@ -52,6 +52,14 @@ function App() {
   const resolvedTickets = tickets.filter(
     (ticket) => ticket.status === "Resolvido",
   ).length;
+
+  function handleUpdateStatus(ticketId: number, newStatus: Ticket["status"]) {
+    setTickets((currentTickets) =>
+      currentTickets.map((ticket) =>
+        ticket.id === ticketId ? { ...ticket, status: newStatus } : ticket,
+      ),
+    );
+  }
 
   return (
     <div className="app">
@@ -187,7 +195,7 @@ function App() {
                       </span>
                     </td>
                     <td>
-                      <span
+                      <select
                         className={`badge ${
                           ticket.status === "Aberto"
                             ? "open"
@@ -195,9 +203,18 @@ function App() {
                               ? "progress"
                               : "resolved"
                         }`}
+                        value={ticket.status}
+                        onChange={(event) =>
+                          handleUpdateStatus(
+                            ticket.id,
+                            event.target.value as Ticket["status"],
+                          )
+                        }
                       >
-                        {ticket.status}
-                      </span>
+                        <option value="Aberto">Aberto</option>
+                        <option value="Em andamento">Em andamento</option>
+                        <option value="Resolvido">Resolvido</option>
+                      </select>
                     </td>
                   </tr>
                 ))}
